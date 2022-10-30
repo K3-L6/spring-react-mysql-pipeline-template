@@ -1,8 +1,25 @@
 version: "3.8"
 
 services:
-  web:
-    build:
-  backend:
-
   database:
+    build: ./src/main/resources/db
+    ports:
+      - 3306:3306
+    volumes:
+      - template:/var/lib/mysql
+
+  backend:
+    build: ./
+    ports:
+      - 9090:9090
+    depends_on:
+      database:
+        condition: service_started
+
+  web:
+    build: ./src/main/js
+    ports:
+      - 3000:3000
+
+volumes:
+  template:
