@@ -2,7 +2,7 @@ FROM eclipse-temurin:11
 
 WORKDIR /app
 COPY . .
-RUN ./gradlew build
+RUN gradlew build
 
 EXPOSE 9090
 
